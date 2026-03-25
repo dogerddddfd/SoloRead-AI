@@ -56,12 +56,12 @@ export default function SettingsScreen() {
       Alert.alert('错误', '请输入模型名称');
       return;
     }
-    
+
     if (!newModelBaseUrl.trim()) {
       Alert.alert('错误', '请输入 Base URL');
       return;
     }
-    
+
     if (!newModelApiKey.trim()) {
       Alert.alert('错误', '请输入 API Key');
       return;
@@ -114,12 +114,12 @@ export default function SettingsScreen() {
       Alert.alert('错误', '请输入模型名称');
       return;
     }
-    
+
     if (!editModelBaseUrl.trim()) {
       Alert.alert('错误', '请输入 Base URL');
       return;
     }
-    
+
     if (!editModelApiKey.trim()) {
       Alert.alert('错误', '请输入 API Key');
       return;
@@ -180,11 +180,15 @@ export default function SettingsScreen() {
 
   return (
     <View style={styles.container}>
+      {/* 页面头部 */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>设置</Text>
+      </View>
       <ScrollView style={styles.scrollView}>
         {/* 模型管理卡片 */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>AI 模型设置</Text>
-          
+
           {/* 已有模型列表 */}
           {models.length > 0 && (
             <View style={styles.modelList}>
@@ -193,7 +197,7 @@ export default function SettingsScreen() {
                   <View style={styles.modelInfo}>
                     <Text style={styles.modelName}>{model.alias || model.name}</Text>
                   </View>
-                  <TouchableOpacity 
+                  <TouchableOpacity
                     style={styles.moreButton}
                     onPress={(event) => showModelOptions(model, event)}
                   >
@@ -208,7 +212,7 @@ export default function SettingsScreen() {
           {showAddModel ? (
             <View style={styles.addModelForm}>
               <Text style={styles.formTitle}>添加模型</Text>
-              
+
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>AI API Key</Text>
                 <TextInput
@@ -288,19 +292,19 @@ export default function SettingsScreen() {
           <Pressable style={styles.modalOverlay} onPress={() => setShowOptions(false)}>
             <View style={styles.optionsContainer}>
               <View style={[styles.optionsMenu, { top: optionsPosition.y, right: 20 }]}>
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.menuItem}
                   onPress={() => pingApi(selectedModel)}
                 >
                   <Text style={styles.menuItemText}>ping</Text>
                 </TouchableOpacity>
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.menuItem}
                   onPress={() => editModel(selectedModel)}
                 >
                   <Text style={styles.menuItemText}>修改</Text>
                 </TouchableOpacity>
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.menuItem}
                   onPress={() => removeModel(selectedModel.id)}
                 >
@@ -323,7 +327,7 @@ export default function SettingsScreen() {
           <View style={styles.modalContainer}>
             <View style={styles.editModelForm}>
               <Text style={styles.formTitle}>修改模型</Text>
-              
+
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>AI API Key</Text>
                 <TextInput
@@ -385,6 +389,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+  },
+  header: {
+    marginTop: 25,
+    backgroundColor: '#fff',
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    paddingBottom: 13,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#333',
   },
   scrollView: {
     flex: 1,

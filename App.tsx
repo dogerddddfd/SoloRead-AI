@@ -9,47 +9,52 @@ import ReadingScreen from './src/screens/ReadingScreen';
 import VocabularyScreen from './src/screens/VocabularyScreen';
 import SentenceScreen from './src/screens/SentenceScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
+import AddArticleScreen from './src/screens/AddArticleScreen';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Tab.Screen
           name="Reading"
           component={ReadingScreen}
           options={{
-            title: '阅读',
             tabBarLabel: '阅读',
-            headerTitleAlign: 'center'
+          }}
+        />
+        <Tab.Screen
+          name="AddArticle"
+          component={AddArticleScreen}
+          options={{
+            tabBarLabel: '添加',
+            tabBarItemStyle: { display: "none" }
           }}
         />
         <Tab.Screen
           name="Vocabulary"
           component={VocabularyScreen}
           options={{
-            title: '生词',
-            tabBarLabel: '生词',
-            headerTitleAlign: 'center'
+            tabBarLabel: '生词'
           }}
         />
         <Tab.Screen
           name="Sentence"
           component={SentenceScreen}
           options={{
-            title: '造句',
-            tabBarLabel: '造句',
-            headerTitleAlign: 'center'
+            tabBarLabel: '造句'
           }}
         />
         <Tab.Screen
           name="Settings"
           component={SettingsScreen}
           options={{
-            title: '设置',
-            tabBarLabel: '设置',
-            headerTitleAlign: 'center'
+            tabBarLabel: '设置'
           }}
         />
       </Tab.Navigator>
